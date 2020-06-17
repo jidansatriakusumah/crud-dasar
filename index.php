@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["login"])) {
+  header("Location: login.php");
+}
 
 $connect = new mysqli("localhost", "root", "", "crud_dasar");
 $result = mysqli_query($connect, "SELECT * FROM seluruh_data");
@@ -25,6 +30,7 @@ if (isset($_POST["cari"])) {
   </h1>
   <h2>Tabel</h2>
   <a href="create.php"><button>Buat Data</button></a>
+  <a href="logout.php"><button>Logout</button></a>
   <form action="" method="POST">
     <input type="text" placeholder="Masukkan keyword yang ingin dicari..." size="40" name="keyword" autocomplete="off" autofocus>
     <button type="submit" name="cari">Cari!</button>
@@ -39,6 +45,13 @@ if (isset($_POST["cari"])) {
         <th>Aksi</th>
       </thead>
     </tr>
+    <?php if (empty($result)) { ?>
+      <tr>
+        <td>
+          <p style="color: red; font-style: italic;">Data tidak ditemukan!</p>
+        </td>
+      </tr>
+    <?php } ?>
     <?php $i = 1 ?>
     <?php while ($user_data = mysqli_fetch_array($result)) { ?>
       <tr>
