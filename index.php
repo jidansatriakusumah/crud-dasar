@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["login"])) {
-  header("Location: login.php");
+  echo "<script>alert('Anda harus login terlebih dahulu!); document.location.href = 'login.php';</script>";
 }
 
 $connect = new mysqli("localhost", "root", "", "crud_dasar");
@@ -32,44 +32,48 @@ if (isset($_POST["cari"])) {
   <a href="create.php"><button>Buat Data</button></a>
   <a href="logout.php"><button>Logout</button></a>
   <form action="" method="POST">
-    <input type="text" placeholder="Masukkan keyword yang ingin dicari..." size="40" name="keyword" autocomplete="off" autofocus>
-    <button type="submit" name="cari">Cari!</button>
+    <input type="text" placeholder="Masukkan keyword yang ingin dicari..." size="40" name="keyword-cari" autocomplete="off" autofocus class="keyword">
+    <button type="submit" name="cari" class="tombol-cari">Cari!</button>
   </form>
-  <table>
-    <tr>
-      <thead>
-        <th>No</th>
-        <th>Nama</th>
-        <th>Alamat</th>
-        <th>Asal</th>
-        <th>Aksi</th>
-      </thead>
-    </tr>
-    <?php if (empty($result)) { ?>
+  <div class="data-table">
+    <table>
       <tr>
-        <td>
-          <p style="color: red; font-style: italic;">Data tidak ditemukan!</p>
-        </td>
+        <thead>
+          <th>No</th>
+          <th>Nama</th>
+          <th>Alamat</th>
+          <th>Asal</th>
+          <th>Aksi</th>
+        </thead>
       </tr>
-    <?php } ?>
-    <?php $i = 1 ?>
-    <?php while ($user_data = mysqli_fetch_array($result)) { ?>
-      <tr>
-        <tbody>
-          <td><?= $i ?></td>
-          <td><?= $user_data["data_nama"]; ?></td>
-          <td><?= $user_data["data_alamat"]; ?></td>
-          <td><?= $user_data["data_asal"]; ?></td>
+      <?php if (empty($result)) { ?>
+        <tr>
           <td>
-            <a href="update.php?id=<?= $user_data["data_id"] ?>">Ubah</a> |
-            <a href="delete.php?id=<?= $user_data["data_id"] ?>">Hapus</a>
+            <p style="color: red; font-style: italic;">Data tidak ditemukan!</p>
           </td>
-        </tbody>
-      </tr>
-      <?php $i++; ?>
-    <?php } ?>
-  </table>
+        </tr>
+      <?php } ?>
+      <?php $i = 1 ?>
+      <?php while ($user_data = mysqli_fetch_array($result)) { ?>
+        <tr>
+          <tbody>
+            <td><?= $i ?></td>
+            <td><?= $user_data["data_nama"]; ?></td>
+            <td><?= $user_data["data_alamat"]; ?></td>
+            <td><?= $user_data["data_asal"]; ?></td>
+            <td>
+              <a href="update.php?id=<?= $user_data["data_id"] ?>">Ubah</a> |
+              <a href="delete.php?id=<?= $user_data["data_id"] ?>">Hapus</a>
+            </td>
+          </tbody>
+        </tr>
+        <?php $i++; ?>
+      <?php } ?>
+    </table>
+  </div>
+
   <p>&copy; 2020 by Jidan</p>
+
 </body>
 
 </html>

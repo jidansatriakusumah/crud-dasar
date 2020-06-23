@@ -13,7 +13,7 @@ if (isset($_POST["submit"])) {
 
   $connect = new mysqli("localhost", "root", "", "crud_dasar");
   $result = mysqli_query($connect, "INSERT INTO seluruh_data (data_nama, data_alamat, data_asal) VALUES ('$data_nama', '$data_alamat', '$data_asal')");
-  header('Location:index.php');
+  echo "<script>alert('Data berhasil ditambah!'); document.location.href = 'index.php';</script>";
 }
 
 ?>
@@ -41,5 +41,6 @@ if (isset($_POST["submit"])) {
   </form>
   <a href="index.php"><button>Kembali</button></a>
 </body>
+
 
 </html>

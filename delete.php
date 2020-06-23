@@ -12,4 +12,4 @@ $id = $_GET["id"];
 
 $result = mysqli_query($connect, "DELETE FROM seluruh_data WHERE data_id=$id");
 
-header('Location:index.php');
+echo "<script>document.location.href = 'index.php'</script>";

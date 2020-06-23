@@ -18,7 +18,7 @@ if (isset($_POST["submit"])) {
   // ada 2 parameter woy, ulah poho :v
   $result = mysqli_query($connect, "UPDATE seluruh_data SET data_nama='$nama', data_alamat='$alamat', data_asal='$asal' WHERE data_id=$id");
 
-  header('Location:index.php');
+  echo "<script>alert('Data berhasil diedit!'); document.location.href = 'index.php';</script>";
 }
 
 $id = $_GET["id"];

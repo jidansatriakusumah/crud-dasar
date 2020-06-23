@@ -15,26 +15,23 @@ if (isset($_POST["registrasi"])) {
 
 
   if (empty($username) || empty($password1) || empty($password2)) {
-    echo "<script>alert('Username atau password tidak boleh kosong!');</script>";
+    echo "<script>alert('Username atau password tidak boleh kosong!'); document.location.href = 'registrasi.php';</script>";
     // header("Location: registrasi.php");
   }
 
   $result = mysqli_query($connect, "SELECT * FROM admin WHERE username = '$username'");
   if (mysqli_num_rows($result) == 1) {
-    echo "<script>alert('Username sudah ada, silahkan pilih username yang lain!');</script>";
+    echo "<script>alert('Username sudah ada, silahkan pilih username yang lain!'); document.location.href = 'registrasi.php';</script>";
     // header("Location: registrasi.php");
   }
 
   if (strlen($password1) < 5) {
-    echo "<script>alert('Password terlalu pendek!');</script>";
-    // header("Location: registrasi.php");
+    echo "<script>alert('Password terlalu pendek!'); document.location.href = 'registrasi.php';</script>";
   }
 
   $password_baru = password_hash($password1, PASSWORD_DEFAULT);
   $add = mysqli_query($connect, "INSERT INTO admin (username, password) VALUES ('$username', '$password_baru')");
-  echo "<script>alert('Selamat! Anda berhasil registrasi!');</script>";
-
-  // header("Location: login.php");
+  echo "<script>alert('Selamat! Anda berhasil registrasi!'); document.location.href = 'login.php';</script>";
 }
 
 ?>

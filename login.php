@@ -19,7 +19,7 @@ if (isset($_POST["login"])) {
   if (mysqli_num_rows($result) == 1) {
     if (password_verify($password, $data_admin['password'])) {
       $_SESSION["login"] = true;
-      // header("Location: index.php");
+      header('Location: index.php');
     }
   } else {
     echo "<script>alert('Username atau password salah!');</script>";
