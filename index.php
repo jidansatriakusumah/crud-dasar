@@ -8,8 +8,8 @@ if (!isset($_SESSION["login"])) {
 $connect = new mysqli("localhost", "root", "", "crud_dasar");
 $result = mysqli_query($connect, "SELECT * FROM seluruh_data");
 
-if (isset($_POST["cari"])) {
-  $keyword = $_POST["keyword"];
+if (isset($_GET["cari"])) {
+  $keyword = $_GET["keyword-cari"];
   $connect = new mysqli("localhost", "root", "", "crud_dasar");
 
   $result = mysqli_query($connect, "SELECT * FROM seluruh_data WHERE data_nama LIKE '%$keyword%' OR data_alamat LIKE '%$keyword%' OR data_asal LIKE '%$keyword%'");
@@ -31,11 +31,11 @@ if (isset($_POST["cari"])) {
   <h2>Tabel</h2>
   <a href="create.php"><button>Buat Data</button></a>
   <a href="logout.php"><button>Logout</button></a>
-  <form action="" method="POST">
-    <input type="text" placeholder="Masukkan keyword yang ingin dicari..." size="40" name="keyword-cari" autocomplete="off" autofocus class="keyword">
-    <button type="submit" name="cari" class="tombol-cari">Cari!</button>
+  <form action="" method="GET">
+    <input type="text" placeholder="Masukkan keyword yang ingin dicari..." size="40" name="keyword-cari" autocomplete="off" autofocus id="keyword-cari">
+    <button type="submit" name="cari" id="tombol-cari">Cari!</button>
   </form>
-  <div class="data-table">
+  <div id="data-table">
     <table>
       <tr>
         <thead>
@@ -46,13 +46,6 @@ if (isset($_POST["cari"])) {
           <th>Aksi</th>
         </thead>
       </tr>
-      <?php if (empty($result)) { ?>
-        <tr>
-          <td>
-            <p style="color: red; font-style: italic;">Data tidak ditemukan!</p>
-          </td>
-        </tr>
-      <?php } ?>
       <?php $i = 1 ?>
       <?php while ($user_data = mysqli_fetch_array($result)) { ?>
         <tr>
@@ -73,6 +66,9 @@ if (isset($_POST["cari"])) {
   </div>
 
   <p>&copy; 2020 by Jidan</p>
+
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="js/script.js"></script>
 
 </body>
 
