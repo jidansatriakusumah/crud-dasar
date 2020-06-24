@@ -40,6 +40,7 @@ if (isset($_GET["cari"])) {
       <tr>
         <thead>
           <th>No</th>
+          <th>Gambar</th>
           <th>Nama</th>
           <th>Alamat</th>
           <th>Asal</th>
@@ -51,12 +52,15 @@ if (isset($_GET["cari"])) {
         <tr>
           <tbody>
             <td><?= $i ?></td>
+            <td><?php if (!empty($user_data['data_gambar'])) {
+                  echo "<img src='file-gambar/" . $user_data["data_gambar"] . "' style='height : 10%;'>";
+                }  ?></td>
             <td><?= $user_data["data_nama"]; ?></td>
             <td><?= $user_data["data_alamat"]; ?></td>
             <td><?= $user_data["data_asal"]; ?></td>
             <td>
               <a href="update.php?id=<?= $user_data["data_id"] ?>">Ubah</a> |
-              <a href="delete.php?id=<?= $user_data["data_id"] ?>">Hapus</a>
+              <a href="delete.php?id=<?= $user_data["data_id"] ?>&data_gambar=<?= $user_data["data_gambar"]; ?>">Hapus</a>
             </td>
           </tbody>
         </tr>
