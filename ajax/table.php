@@ -30,7 +30,7 @@
           <tbody>
             <td><?= $i ?></td>
             <td><?php if (!empty($user_data['data_gambar'])) {
-                  echo "<img src='file-gambar/" . $user_data["data_gambar"] . "' style='height : 10%;'>";
+                  echo "<img src='file-gambar/" . $user_data["data_gambar"] . "' style='height : 60px;'>";
                 }  ?></td>
             <td><?= $user_data["data_nama"]; ?></td>
             <td><?= $user_data["data_alamat"]; ?></td>

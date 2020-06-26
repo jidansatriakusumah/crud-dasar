@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["login"])) {
-  echo "<script>alert('Anda harus login terlebih dahulu!); document.location.href = 'login.php';</script>";
+  echo "<script>alert('Anda harus login terlebih dahulu!'); document.location.href = 'login.php';</script>";
 }
 
 $connect = new mysqli("localhost", "root", "", "crud_dasar");
@@ -53,13 +53,13 @@ if (isset($_GET["cari"])) {
           <tbody>
             <td><?= $i ?></td>
             <td><?php if (!empty($user_data['data_gambar'])) {
-                  echo "<img src='file-gambar/" . $user_data["data_gambar"] . "' style='height : 10%;'>";
+                  echo "<img src='file-gambar/" . $user_data["data_gambar"] . "' style='height : 60px;'>";
                 }  ?></td>
             <td><?= $user_data["data_nama"]; ?></td>
             <td><?= $user_data["data_alamat"]; ?></td>
             <td><?= $user_data["data_asal"]; ?></td>
             <td>
-              <a href="update.php?id=<?= $user_data["data_id"] ?>">Ubah</a> |
+              <a href="update.php?id=<?= $user_data["data_id"] ?>&data_gambar=<?= $user_data["data_gambar"]; ?>">Ubah</a> |
               <a href="delete.php?id=<?= $user_data["data_id"] ?>&data_gambar=<?= $user_data["data_gambar"]; ?>">Hapus</a>
             </td>
           </tbody>
