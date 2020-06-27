@@ -37,20 +37,20 @@ if (isset($_GET["cari"])) {
   </form>
   <div id="data-table">
     <table>
-      <tr>
-        <thead>
+      <thead>
+        <tr>
           <th>No</th>
           <th>Gambar</th>
           <th>Nama</th>
           <th>Alamat</th>
           <th>Asal</th>
           <th>Aksi</th>
-        </thead>
-      </tr>
-      <?php $i = 1 ?>
-      <?php while ($user_data = mysqli_fetch_array($result)) { ?>
-        <tr>
-          <tbody>
+        </tr>
+      </thead>
+      <tbody>
+        <?php $i = 1 ?>
+        <?php while ($user_data = mysqli_fetch_array($result)) { ?>
+          <tr>
             <td><?= $i ?></td>
             <td><?php if (!empty($user_data['data_gambar'])) {
                   echo "<img src='file-gambar/" . $user_data["data_gambar"] . "' style='height : 60px;'>";
@@ -62,10 +62,10 @@ if (isset($_GET["cari"])) {
               <a href="update.php?id=<?= $user_data["data_id"] ?>&data_gambar=<?= $user_data["data_gambar"]; ?>">Ubah</a> |
               <a href="delete.php?id=<?= $user_data["data_id"] ?>&data_gambar=<?= $user_data["data_gambar"]; ?>">Hapus</a>
             </td>
-          </tbody>
-        </tr>
-        <?php $i++; ?>
-      <?php } ?>
+          </tr>
+          <?php $i++; ?>
+        <?php } ?>
+      </tbody>
     </table>
   </div>
 
